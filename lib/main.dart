@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:ui';
 
+import 'pages/syntax_detail_page.dart';
 import 'pages/widget_detail_page.dart';
 
 void main() => runApp(const CoreLoopApp());
@@ -107,7 +108,7 @@ class HomePage extends StatelessWidget {
                       subtitle: "Dart Syntax",
                       icon: Icons.code_rounded,
                       color: Colors.purpleAccent,
-                      onTap: () {},
+                      onTap: () => _navigateToSyntaxDetail(context, "Syntax"),
                     ),
                     _buildMainCard(
                       title: "动效实验",
@@ -238,6 +239,14 @@ class HomePage extends StatelessWidget {
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => WidgetDetailPage(title: title)),
+    );
+  }
+
+  void _navigateToSyntaxDetail(BuildContext context, String title) {
+    // 实际项目中跳转二级页面
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => SyntaxDetailPage(title: title)),
     );
   }
 }

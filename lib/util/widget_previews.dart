@@ -1430,17 +1430,72 @@ CircleAvatar(
         min: 0,
         max: 2,
       ),
+      PreviewControl(
+        key: 'selectedItemColor',
+        label: 'Selected Color',
+        type: ControlType.color,
+        defaultValue: Colors.blue,
+      ),
+      PreviewControl(
+        key: 'unselectedItemColor',
+        label: 'Unselected Color',
+        type: ControlType.color,
+        defaultValue: Colors.grey,
+      ),
+      PreviewControl(
+        key: 'showSelectedLabels',
+        label: 'Show Selected Labels',
+        type: ControlType.boolean,
+        defaultValue: true,
+      ),
+      PreviewControl(
+        key: 'showUnselectedLabels',
+        label: 'Show Unselected Labels',
+        type: ControlType.boolean,
+        defaultValue: true,
+      ),
+      PreviewControl(
+        key: 'type',
+        label: 'Type',
+        type: ControlType.enumeration,
+        options: ['fixed', 'shifting'],
+        defaultValue: 'fixed',
+      ),
     ],
     builder: (context, args) => BottomNavigationBar(
       currentIndex: args['currentIndex'],
-      items: const [
-        BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-        BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Search'),
-        BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
+      selectedItemColor: args['selectedItemColor'],
+      unselectedItemColor: args['unselectedItemColor'],
+      showSelectedLabels: args['showSelectedLabels'],
+      showUnselectedLabels: args['showUnselectedLabels'],
+      type: args['type'] == 'fixed'
+          ? BottomNavigationBarType.fixed
+          : BottomNavigationBarType.shifting,
+      items: [
+        BottomNavigationBarItem(
+          icon: const Icon(Icons.home),
+          label: 'Home',
+          backgroundColor: args['type'] == 'shifting' ? Colors.blue : null,
+        ),
+        BottomNavigationBarItem(
+          icon: const Icon(Icons.search),
+          label: 'Search',
+          backgroundColor: args['type'] == 'shifting' ? Colors.red : null,
+        ),
+        BottomNavigationBarItem(
+          icon: const Icon(Icons.person),
+          label: 'Profile',
+          backgroundColor: args['type'] == 'shifting' ? Colors.green : null,
+        ),
       ],
     ),
     codeBuilder: (args) => '''BottomNavigationBar(
   currentIndex: ${args['currentIndex']},
+  selectedItemColor: ${_colorName(args['selectedItemColor'])},
+  unselectedItemColor: ${_colorName(args['unselectedItemColor'])},
+  showSelectedLabels: ${args['showSelectedLabels']},
+  showUnselectedLabels: ${args['showUnselectedLabels']},
+  type: BottomNavigationBarType.${args['type']},
   items: const [
     BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
     BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Search'),

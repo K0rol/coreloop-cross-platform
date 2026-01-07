@@ -497,6 +497,18 @@ class _WidgetDetailPageState extends State<WidgetDetailPage>
     );
   }
 
+  String _getColorName(Color color) {
+    if (color == Colors.blue) return 'Blue';
+    if (color == Colors.red) return 'Red';
+    if (color == Colors.green) return 'Green';
+    if (color == Colors.amber) return 'Amber';
+    if (color == Colors.black) return 'Black';
+    if (color == Colors.white) return 'White';
+    if (color == Colors.grey) return 'Grey';
+    if (color == Colors.transparent) return 'Transparent';
+    return 'Custom';
+  }
+
   Widget _buildCodePanel(
     WidgetPreviewData previewData,
     Map<String, dynamic> args,
@@ -566,7 +578,6 @@ class _WidgetDetailPageState extends State<WidgetDetailPage>
           contentPadding: EdgeInsets.zero,
         );
       case ControlType.enumeration:
-      case ControlType.color:
         return Padding(
           padding: const EdgeInsets.symmetric(vertical: 8.0),
           child: Row(
@@ -589,6 +600,65 @@ class _WidgetDetailPageState extends State<WidgetDetailPage>
                           control.optionLabels?[opt] ??
                               opt.toString().split('.').last,
                           style: const TextStyle(fontSize: 14),
+                        ),
+                      );
+                    }).toList(),
+                onChanged: (val) {
+                  if (val != null) setState(() => args[control.key] = val);
+                },
+              ),
+            ],
+          ),
+        );
+      case ControlType.color:
+        final List<Color> colorOptions =
+            control.options?.cast<Color>() ??
+            [
+              Colors.blue,
+              Colors.red,
+              Colors.green,
+              Colors.amber,
+              Colors.black,
+              Colors.white,
+              Colors.grey,
+              Colors.transparent,
+            ];
+
+        return Padding(
+          padding: const EdgeInsets.symmetric(vertical: 8.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                control.label,
+                style: const TextStyle(color: Colors.white70),
+              ),
+              DropdownButton<Color>(
+                value: args[control.key] as Color,
+                dropdownColor: const Color(0xFF1E293B),
+                style: const TextStyle(color: Colors.white),
+                underline: Container(height: 1, color: Colors.blueAccent),
+                items:
+                    colorOptions.map((color) {
+                      return DropdownMenuItem(
+                        value: color,
+                        child: Row(
+                          children: [
+                            Container(
+                              width: 16,
+                              height: 16,
+                              decoration: BoxDecoration(
+                                color: color,
+                                border: Border.all(color: Colors.white30),
+                                borderRadius: BorderRadius.circular(4),
+                              ),
+                            ),
+                            const SizedBox(width: 8),
+                            Text(
+                              _getColorName(color),
+                              style: const TextStyle(fontSize: 14),
+                            ),
+                          ],
                         ),
                       );
                     }).toList(),

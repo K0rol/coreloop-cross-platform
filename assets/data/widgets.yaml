@@ -106,19 +106,21 @@ B:
     props: onClosing, builder
     code: |
       // 通常配合 showModalBottomSheet 使用
-      Container(
-        height: 200,
-        color: Colors.white,
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Text('这是一个 BottomSheet'),
-              ElevatedButton(
-                onPressed: () {}, 
-                child: const Text('关闭')
-              ),
-            ],
+      showModalBottomSheet(
+        context: context,
+        builder: (context) => Container(
+          height: 200,
+          color: Colors.white,
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text('这是一个 BottomSheet'),
+                ElevatedButton(
+                  onPressed: () => Navigator.pop(context), 
+                  child: const Text('关闭')
+                ),
+              ],
           ),
         ),
       )

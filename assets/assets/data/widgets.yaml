@@ -1,0 +1,711 @@
+A:
+  - name: AlertDialog
+    desc: 警告对话框，用于提示重要信息或请求用户确认
+    props: title, content, actions
+    code: |
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          icon: const Icon(Icons.warning_amber),
+          iconPadding: EdgeInsets.all(10),
+          title: const Text("Basic AlertDialog"),
+          content: const Text("This is a standard Material Design alert dialog."),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: const Text("Cancel"),
+            ),
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: const Text("OK"),
+            ),
+          ],
+        ),
+      )
+  - name: Align
+    desc: 对齐组件，用于调整子组件在父组件中的位置
+    props: alignment, child
+    code: |
+      Container(
+        height: 100,
+        width: 100,
+        color: Colors.grey[300],
+        child: Align(
+          alignment: Alignment.bottomRight,
+          child: const FlutterLogo(size: 30),
+        ),
+      )
+  - name: AnimatedContainer
+    desc: 动画容器，当属性发生变化时自动执行过渡动画
+    props: duration, curve, color, decoration
+    code: |
+      AnimatedContainer(
+        duration: const Duration(seconds: 1),
+        curve: Curves.fastOutSlowIn,
+        width: 100,
+        height: 100,
+        decoration: BoxDecoration(
+          color: Colors.blue,
+          borderRadius: BorderRadius.circular(20),
+        ),
+      )
+  - name: AppBar
+    desc: 顶部应用栏，通常显示标题、操作按钮等
+    props: title, actions, leading, elevation
+    code: |
+      AppBar(
+        leading: const Icon(Icons.menu),
+        title: const Text('首页'),
+        centerTitle: true,
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.search),
+            onPressed: () {},
+          ),
+          IconButton(
+            icon: const Icon(Icons.more_vert),
+            onPressed: () {},
+          ),
+        ],
+        backgroundColor: Colors.blueAccent,
+      )
+  - name: AspectRatio
+    desc: 宽高比组件，强制子组件保持指定的宽高比
+    props: aspectRatio, child
+    code: |
+      AspectRatio(
+        aspectRatio: 16 / 9,
+        child: Container(
+          color: Colors.green,
+          child: const Center(child: Text('16:9')),
+        ),
+      )
+
+B:
+  - name: BottomNavigationBar
+    desc: 底部导航栏，用于在视图之间切换
+    props: items, currentIndex, onTap
+    code: |
+      BottomNavigationBar(
+        currentIndex: 0,
+        selectedItemColor: Colors.blue,
+        unselectedItemColor: Colors.grey,
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: '首页',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: '我的',
+          ),
+        ],
+      )
+  - name: BottomSheet
+    desc: 底部弹窗，通常用于显示更多选项或详情
+    props: onClosing, builder
+    code: |
+      // 通常配合 showModalBottomSheet 使用
+      Container(
+        height: 200,
+        color: Colors.white,
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Text('这是一个 BottomSheet'),
+              ElevatedButton(
+                onPressed: () {}, 
+                child: const Text('关闭')
+              ),
+            ],
+          ),
+        ),
+      )
+
+C:
+  - name: Card
+    desc: 卡片组件，带有圆角和阴影的面板
+    props: elevation, shape, margin, child
+    code: |
+      Card(
+        elevation: 4,
+        margin: const EdgeInsets.all(16),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: const [
+              Text('Card Title', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+              SizedBox(height: 8),
+              Text('This is a card description.'),
+            ],
+          ),
+        ),
+      )
+  - name: Center
+    desc: 居中组件，将其子组件居中显示
+    props: child
+    code: |
+      Container(
+        height: 100,
+        color: Colors.grey[200],
+        child: const Center(
+          child: Text('居中显示'),
+        ),
+      )
+  - name: Checkbox
+    desc: 复选框，用于多项选择
+    props: value, onChanged, activeColor
+    code: |
+      Checkbox(
+        value: true,
+        activeColor: Colors.blue,
+        onChanged: (bool? newValue) {},
+      )
+  - name: CircleAvatar
+    desc: 圆形头像，通常用于显示用户头像
+    props: radius, backgroundImage, child
+    code: |
+      const CircleAvatar(
+        radius: 30,
+        backgroundColor: Colors.blue,
+        child: Text('AH', style: TextStyle(color: Colors.white)),
+      )
+  - name: CircularProgressIndicator
+    desc: 圆形进度条，表示正在加载或处理
+    props: value, strokeWidth, color
+    code: |
+      const CircularProgressIndicator(
+        strokeWidth: 4,
+        valueColor: AlwaysStoppedAnimation<Color>(Colors.blue),
+      )
+  - name: ClipRRect
+    desc: 圆角裁剪，将子组件裁剪为圆角矩形
+    props: borderRadius, child
+    code: |
+      ClipRRect(
+        borderRadius: BorderRadius.circular(16),
+        child: Container(
+          width: 100,
+          height: 100,
+          color: Colors.orange,
+        ),
+      )
+  - name: Column
+    desc: 垂直布局，将子组件垂直排列
+    props: children, mainAxisAlignment, crossAxisAlignment
+    code: |
+      Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: const [
+          Text('Item 1'),
+          SizedBox(height: 8),
+          Text('Item 2'),
+          SizedBox(height: 8),
+          Text('Item 3'),
+        ],
+      )
+  - name: Container
+    desc: 万能容器，支持尺寸、背景、边框、边距等
+    props: width, height, decoration, padding, margin
+    code: |
+      Container(
+        width: 150,
+        height: 100,
+        padding: const EdgeInsets.all(8),
+        margin: const EdgeInsets.all(8),
+        decoration: BoxDecoration(
+          color: Colors.blue[100],
+          border: Border.all(color: Colors.blue, width: 2),
+          borderRadius: BorderRadius.circular(8),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black12,
+              blurRadius: 4,
+              offset: const Offset(2, 2),
+            ),
+          ],
+        ),
+        child: const Center(child: Text('Container')),
+      )
+
+D:
+  - name: Divider
+    desc: 分割线，用于分隔内容
+    props: height, thickness, color, indent
+    code: |
+      const Divider(
+        height: 20,
+        thickness: 2,
+        color: Colors.grey,
+        indent: 16,
+        endIndent: 16,
+      )
+  - name: Drawer
+    desc: 侧边栏，通常用于导航
+    props: child, elevation
+    code: |
+      Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            const DrawerHeader(
+              decoration: BoxDecoration(color: Colors.blue),
+              child: Text('Header', style: TextStyle(color: Colors.white, fontSize: 24)),
+            ),
+            ListTile(
+              leading: const Icon(Icons.home),
+              title: const Text('Home'),
+              onTap: () {},
+            ),
+            ListTile(
+              leading: const Icon(Icons.settings),
+              title: const Text('Settings'),
+              onTap: () {},
+            ),
+          ],
+        ),
+      )
+  - name: DropdownButton
+    desc: 下拉菜单按钮
+    props: items, value, onChanged
+    code: |
+      DropdownButton<String>(
+        value: 'Option 1',
+        icon: const Icon(Icons.arrow_downward),
+        elevation: 16,
+        style: const TextStyle(color: Colors.deepPurple),
+        underline: Container(
+          height: 2,
+          color: Colors.deepPurpleAccent,
+        ),
+        onChanged: (String? newValue) {},
+        items: <String>['Option 1', 'Option 2', 'Option 3']
+            .map<DropdownMenuItem<String>>((String value) {
+          return DropdownMenuItem<String>(
+            value: value,
+            child: Text(value),
+          );
+        }).toList(),
+      )
+
+E:
+  - name: ElevatedButton
+    desc: 凸起按钮，最常用的操作按钮
+    props: onPressed, child, style
+    code: |
+      ElevatedButton.icon(
+        onPressed: () {},
+        icon: const Icon(Icons.send),
+        label: const Text('发送'),
+        style: ElevatedButton.styleFrom(
+          backgroundColor: Colors.blue,
+          foregroundColor: Colors.white,
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8),
+          ),
+        ),
+      )
+  - name: Expanded
+    desc: 扩展组件，用于 Flex 布局（Row/Column）中填满剩余空间
+    props: flex, child
+    code: |
+      Row(
+        children: [
+          const Icon(Icons.star),
+          Expanded(
+            child: Container(
+              height: 20,
+              color: Colors.amber,
+            ),
+          ),
+          const Icon(Icons.star),
+        ],
+      )
+
+F:
+  - name: FloatingActionButton
+    desc: 浮动动作按钮，通常用于页面的主要操作
+    props: onPressed, child, backgroundColor
+    code: |
+      FloatingActionButton(
+        onPressed: () {},
+        backgroundColor: Colors.blue,
+        child: const Icon(Icons.add),
+      )
+
+G:
+  - name: GestureDetector
+    desc: 手势检测器，用于响应点击、滑动等手势
+    props: onTap, onDoubleTap, onLongPress
+    code: |
+      GestureDetector(
+        onTap: () {
+          print('Tapped!');
+        },
+        child: Container(
+          padding: const EdgeInsets.all(12),
+          decoration: BoxDecoration(
+            color: Colors.lightBlue,
+            borderRadius: BorderRadius.circular(8),
+          ),
+          child: const Text('点击我', style: TextStyle(color: Colors.white)),
+        ),
+      )
+  - name: GridView
+    desc: 网格布局，用于展示多列数据
+    props: gridDelegate, children
+    code: |
+      SizedBox(
+        height: 200,
+        child: GridView.count(
+          crossAxisCount: 3,
+          mainAxisSpacing: 10,
+          crossAxisSpacing: 10,
+          children: List.generate(6, (index) {
+            return Container(
+              color: Colors.teal[100 * (index % 9)],
+              child: Center(child: Text('Item \$index')),
+            );
+          }),
+        ),
+      )
+
+H:
+  - name: Hero
+    desc: 英雄动画，用于跨页面的元素过渡动画
+    props: tag, child
+    code: |
+      const Hero(
+        tag: 'hero-tag',
+        child: Icon(Icons.image, size: 50),
+      )
+
+I:
+  - name: Icon
+    desc: 图标组件，显示 Material 图标
+    props: icon, size, color
+    code: |
+      const Icon(
+        Icons.favorite,
+        color: Colors.pink,
+        size: 36.0,
+      )
+  - name: IconButton
+    desc: 图标按钮
+    props: icon, onPressed, tooltip
+    code: |
+      IconButton(
+        icon: const Icon(Icons.volume_up),
+        tooltip: 'Increase volume',
+        onPressed: () {},
+      )
+  - name: Image
+    desc: 图片组件，显示本地或网络图片
+    props: image, fit, width, height
+    code: |
+      const Image(
+        image: NetworkImage('https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg'),
+        width: 100,
+        height: 100,
+        fit: BoxFit.cover,
+      )
+  - name: InkWell
+    desc: 墨水飞溅效果组件，提供点击波纹效果
+    props: onTap, child, splashColor
+    code: |
+      InkWell(
+        onTap: () {},
+        splashColor: Colors.blue.withOpacity(0.3),
+        child: Container(
+          padding: const EdgeInsets.all(12),
+          child: const Text('点击我有波纹效果'),
+        ),
+      )
+
+L:
+  - name: LinearProgressIndicator
+    desc: 线性进度条
+    props: value, color, backgroundColor
+    code: |
+      const LinearProgressIndicator(
+        value: 0.7,
+        backgroundColor: Colors.grey,
+        color: Colors.blue,
+      )
+  - name: ListTile
+    desc: 列表项，通常用于 ListView 中，包含图标、标题等
+    props: leading, title, subtitle, trailing
+    code: |
+      ListTile(
+        leading: const Icon(Icons.account_circle, size: 40),
+        title: const Text('用户名称'),
+        subtitle: const Text('用户简介信息...'),
+        trailing: const Icon(Icons.arrow_forward_ios, size: 16),
+        onTap: () {},
+      )
+  - name: ListView
+    desc: 滚动列表，最常用的滚动组件
+    props: children, builder, padding
+    code: |
+      SizedBox(
+        height: 200,
+        child: ListView.separated(
+          padding: const EdgeInsets.all(8),
+          itemCount: 5,
+          itemBuilder: (context, index) {
+            return Container(
+              height: 50,
+              color: Colors.amber[100],
+              child: Center(child: Text('Entry \$index')),
+            );
+          },
+          separatorBuilder: (context, index) => const Divider(),
+        ),
+      )
+
+O:
+  - name: Opacity
+    desc: 透明度组件，控制子组件的透明度
+    props: opacity, child
+    code: |
+      Opacity(
+        opacity: 0.5,
+        child: Container(
+          width: 100,
+          height: 50,
+          color: Colors.blue,
+        ),
+      )
+  - name: OutlinedButton
+    desc: 轮廓按钮，只有边框没有背景色
+    props: onPressed, child, style
+    code: |
+      OutlinedButton(
+        onPressed: () {},
+        style: OutlinedButton.styleFrom(
+          side: const BorderSide(color: Colors.blue, width: 2),
+        ),
+        child: const Text('Outlined Button'),
+      )
+
+P:
+  - name: Padding
+    desc: 内边距组件，给子组件添加内边距
+    props: padding, child
+    code: |
+      Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Container(color: Colors.green, height: 50),
+      )
+  - name: PageView
+    desc: 页面视图，可水平或垂直滑动切换页面
+    props: controller, children
+    code: |
+      SizedBox(
+        height: 200,
+        child: PageView(
+          children: [
+            Container(color: Colors.red),
+            Container(color: Colors.green),
+            Container(color: Colors.blue),
+          ],
+        ),
+      )
+  - name: Positioned
+    desc: 定位组件，用于 Stack 中精确控制位置
+    props: top, bottom, left, right
+    code: |
+      Stack(
+        children: [
+          Container(width: 100, height: 100, color: Colors.grey),
+          const Positioned(
+            bottom: 10,
+            right: 10,
+            child: Icon(Icons.star, color: Colors.red),
+          ),
+        ],
+      )
+
+R:
+  - name: Radio
+    desc: 单选按钮
+    props: value, groupValue, onChanged
+    code: |
+      Radio(
+        value: 1,
+        groupValue: 1,
+        onChanged: (val) {},
+      )
+  - name: Row
+    desc: 水平布局，将子组件水平排列
+    props: children, mainAxisAlignment
+    code: |
+      Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: const [
+          Icon(Icons.star),
+          Icon(Icons.star),
+          Icon(Icons.star),
+        ],
+      )
+
+S:
+  - name: Scaffold
+    desc: 脚手架，实现了基本的 Material Design 布局结构
+    props: appBar, body, floatingActionButton
+    code: |
+      // 通常作为页面的根组件
+      Scaffold(
+        appBar: AppBar(title: const Text('Title')),
+        body: const Center(child: Text('Body')),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {},
+          child: const Icon(Icons.add),
+        ),
+      )
+  - name: SingleChildScrollView
+    desc: 单子组件滚动视图，使单个子组件可滚动
+    props: child, scrollDirection
+    code: |
+      SingleChildScrollView(
+        child: Column(
+          children: List.generate(20, (index) => Text('Item \$index')),
+        ),
+      )
+  - name: SizedBox
+    desc: 尺寸盒子，用于限制大小或添加间距
+    props: width, height, child
+    code: |
+      Row(
+        children: const [
+          Text('Left'),
+          SizedBox(width: 20), // 添加间距
+          Text('Right'),
+        ],
+      )
+  - name: Slider
+    desc: 滑块，用于选择连续值
+    props: value, min, max, onChanged
+    code: |
+      Slider(
+        value: 0.5,
+        min: 0.0,
+        max: 1.0,
+        activeColor: Colors.blue,
+        onChanged: (val) {},
+      )
+  - name: SnackBar
+    desc: 底部消息提示条
+    props: content, action
+    code: |
+      // 使用 ScaffoldMessenger 显示
+      const SnackBar(
+        content: Text('操作成功'),
+        backgroundColor: Colors.green,
+        behavior: SnackBarBehavior.floating,
+      )
+  - name: Stack
+    desc: 堆叠布局，允许子组件重叠
+    props: children, alignment
+    code: |
+      Stack(
+        alignment: Alignment.center,
+        children: [
+          Container(width: 100, height: 100, color: Colors.red),
+          Container(width: 50, height: 50, color: Colors.blue),
+        ],
+      )
+  - name: Switch
+    desc: 开关组件
+    props: value, onChanged, activeColor
+    code: |
+      Switch(
+        value: true,
+        activeColor: Colors.green,
+        onChanged: (val) {},
+      )
+
+T:
+  - name: TabBar
+    desc: 选项卡栏，配合 TabBarView 使用
+    props: tabs, controller
+    code: |
+      const TabBar(
+        tabs: [
+          Tab(icon: Icon(Icons.directions_car)),
+          Tab(icon: Icon(Icons.directions_transit)),
+          Tab(icon: Icon(Icons.directions_bike)),
+        ],
+      )
+  - name: Text
+    desc: 文本组件，显示样式化文本
+    props: data, style, textAlign
+    code: |
+      const Text(
+        'Hello Flutter',
+        style: TextStyle(
+          fontSize: 24,
+          fontWeight: FontWeight.bold,
+          color: Colors.blue,
+          letterSpacing: 2.0,
+        ),
+      )
+  - name: TextButton
+    desc: 文本按钮，无背景无边框
+    props: onPressed, child
+    code: |
+      TextButton(
+        onPressed: () {},
+        child: const Text('Text Button'),
+      )
+  - name: TextField
+    desc: 文本输入框
+    props: controller, decoration, onChanged
+    code: |
+      const TextField(
+        decoration: InputDecoration(
+          border: OutlineInputBorder(),
+          labelText: '用户名',
+          prefixIcon: Icon(Icons.person),
+        ),
+      )
+
+W:
+  - name: Wrap
+    desc: 流式布局，超出范围自动换行
+    props: children, spacing, runSpacing
+    code: |
+      Wrap(
+        spacing: 8.0,
+        runSpacing: 4.0,
+        children: const [
+          Chip(label: Text('Flutter')),
+          Chip(label: Text('Dart')),
+          Chip(label: Text('Android')),
+          Chip(label: Text('iOS')),
+          Chip(label: Text('Web')),
+        ],
+      )
+
+Y:
+  - name: YearPicker
+    desc: 年份选择器，用于选择年份
+    props: firstDate, lastDate, selectedDate, onChanged
+    code: |
+      SizedBox(
+        height: 300,
+        child: YearPicker(
+          firstDate: DateTime(2000),
+          lastDate: DateTime(2050),
+          selectedDate: DateTime.now(),
+          onChanged: (DateTime dateTime) {},
+        ),
+      )
+
